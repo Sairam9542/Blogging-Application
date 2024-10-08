@@ -19,11 +19,11 @@ export default function EditBlog() {
 
   return (
     <>
-    <div className="container mt-1">
+    <div className="container mt-3 py-1 border rounded bg-light shadow">
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <form>
-            <div className="mb-3">
+            <div className="my-1">
               <label for="title" className="form-label">Title</label>
               <input type="text" name="title" className="form-control" onChange={onHandleChange} value={blogData.title}/>
             </div>

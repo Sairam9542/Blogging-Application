@@ -18,7 +18,7 @@ export default function AddBlog() {
 
   return (
     <>
-    <div className="container mt-1">
+    <div className="container mt-1 py-2 bg-light rounded border shadow">
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <form>
