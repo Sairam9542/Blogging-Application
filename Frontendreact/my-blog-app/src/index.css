@@ -1,0 +1,22 @@
+body {
+    background-color: #faf7f5db;
+}
+.footer {
+    background-color: #000;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    color: #e4dcc5;
+    width: 100%;
+}
+
+
+.navbar {
+    background-color: #000;
+}
+#navstyles {
+    color: #fff
+}
+#navstyles:hover {
+    color: rgb(32, 170, 212);
+}
