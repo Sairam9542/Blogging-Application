@@ -21,7 +21,7 @@ export default function BlogItem() {
                         <h5 className="card-title">{blog.title}</h5>
                         <p className="card-text"><Markdown>{blog.description}</Markdown></p>
                         <p><a href={`/blogView/${blog.id}`}>View more</a></p>
-                        <button onClick={()=>deleteBlog(blog.id)} className='btn btn-danger'>Delete</button>
+                        <button id='buttondlt' onClick={()=>deleteBlog(blog.id)} className='btn text-white'>Delete</button>
                     </div>
                 </div>)
             })

@@ -14,9 +14,53 @@ body {
 .navbar {
     background-color: #000;
 }
-#navstyles {
-    color: #fff
-}
-#navstyles:hover {
-    color: rgb(32, 170, 212);
-}
+
+  
+  #navstyles {
+    background-color: transparent;
+    border: 3px solid #c266d3;
+    border-radius: 10px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    color: #c266d3;
+  }
+  #navstyles:hover {
+    box-shadow: 0 0 10px 0 #c266d3 inset, 0 0 20px 2px #c266d3;
+    border: 3px solid #c266d3;
+  }
+
+  #buttondlt {
+    background-color: #a90e0e;
+    border: 3px solid #a90e0e;
+    border-radius: 10px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    color: #a90e0e;
+  }
+  #buttondlt:hover {
+    box-shadow: 0 0 10px 0 #a90e0e inset, 0 0 20px 2px #a90e0e;
+    border: 3px solid #a90e0e;
+  }
+
+  #buttonedt {
+    background-color: #1488da;
+    border: 3px solid #1488da;
+    border-radius: 10px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    color: #1488da;
+  }
+  #buttonedt:hover {
+    box-shadow: 0 0 10px 0 #1488da inset, 0 0 20px 2px #1488da;
+    border: 3px solid #1488da;
+  }
+
+
+
+      #blogsubmit {
+        transition: all 0.3s ease-in-out;
+      }
+      
+      #blogsubmit:hover {
+        transform: scale(0.8);
+      }

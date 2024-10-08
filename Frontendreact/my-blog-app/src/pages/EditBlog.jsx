@@ -31,7 +31,7 @@ export default function EditBlog() {
               <label for="description" className="form-label">Description</label>
               <textarea type="text" name="description" rows="8" className="form-control" onChange={onHandleChange} value={blogData.description}></textarea>
             </div>
-            <center><button onClick={onSubmit} type="submit" className="btn btn-primary">Submit</button></center>
+            <center><button id='buttonedt' onClick={onSubmit} type="submit" className="btn text-white">Submit</button></center>
           </form>
         </div>
       </div>
