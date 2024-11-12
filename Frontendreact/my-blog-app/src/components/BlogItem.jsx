@@ -16,7 +16,7 @@ export default function BlogItem() {
     <>
         {
             allBlogs.map((blog,index)=>{
-               return( <div className="card shadow p-3 mb-5 rounded border-0">
+               return( <div className="card shadow p-3 m-5 rounded border-0">
                     <div key={index} className="card-body">
                         <h5 className="card-title">{blog.title}</h5>
                         <p className="card-text"><Markdown>{blog.description}</Markdown></p>

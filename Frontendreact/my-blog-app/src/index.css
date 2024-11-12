@@ -4,8 +4,6 @@ body {
 .footer {
     background-color: #000;
     text-align: center;
-    position: fixed;
-    bottom: 0;
     color: #e4dcc5;
     width: 100%;
 }
@@ -13,6 +11,10 @@ body {
 
 .navbar {
     background-color: #000;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top: 0;
 }
 
   
