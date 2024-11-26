@@ -3,10 +3,10 @@ Welcome to my Blog Application!
 
 ### Weblink: [Live Website]()
 ## Some Images:
-<img width="450px;" src="[https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732267892/Screenshot_37_thwdtf.png]"/>
-<img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630817/blog4_rzbmrd.png"/>
-<img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630817/Blog3_ntulnn.png"/>
-<img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630818/Blog2_kednbq.png"/>
+<img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732267892/Screenshot_37_thwdtf.png"/> <img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630817/blog4_rzbmrd.png"/>
+
+<img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630817/Blog3_ntulnn.png"/> <img width="450px;" src="https://res.cloudinary.com/dz1zt2xfc/image/upload/v1732630818/Blog2_kednbq.png"/>
+
 
 ## Table of Contents
 - [Introduction](#introduction)
