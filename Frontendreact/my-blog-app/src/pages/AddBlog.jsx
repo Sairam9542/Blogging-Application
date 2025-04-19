@@ -1,8 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
-export default function AddBlog() {
+export default function EditBlog() {
+  const blog = useLoaderData();
+  // Initialize with empty values in case blog data is undefined
   const [blogData, setBlogData] = useState({
     title: '',
     description: ''
@@ -10,6 +12,17 @@ export default function AddBlog() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [charCount, setCharCount] = useState(0);
   const navigate = useNavigate();
+  
+  // Set blog data after component mounts if data is available
+  useEffect(() => {
+    if (blog && typeof blog === 'object') {
+      setBlogData({
+        title: blog.title || '',
+        description: blog.description || ''
+      });
+      setCharCount(blog.description ? blog.description.length : 0);
+    }
+  }, [blog]);
 
   const onHandleChange = (e) => {
     const { name, value } = e.target;
@@ -30,11 +43,16 @@ export default function AddBlog() {
     setIsSubmitting(true);
     
     try {
-      await axios.post("http://localhost:5000/blog", blogData);
+      if (blog && blog.id) {
+        await axios.put(`http://localhost:5000/blog/${blog.id}`, blogData);
+      } else {
+        // Fallback to post if it's not a valid edit
+        await axios.post("http://localhost:5000/blog", blogData);
+      }
       setIsSubmitting(false);
       navigate("/");
     } catch (error) {
-      console.error("Error submitting blog:", error);
+      console.error("Error updating blog:", error);
       setIsSubmitting(false);
     }
   };
@@ -52,6 +70,12 @@ export default function AddBlog() {
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          
+          .blog-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
           }
           
           .blog-form-title {
@@ -72,10 +96,21 @@ export default function AddBlog() {
             width: 60px;
             height: 2px;
             background: linear-gradient(to right, #6d46e4, #8f70e6);
+            transition: width 0.3s ease;
+          }
+          
+          .blog-form-container:hover .blog-form-title::after {
+            width: 120px;
           }
           
           .form-group {
             margin-bottom: 25px;
+            position: relative;
+            transition: transform 0.2s ease;
+          }
+          
+          .form-group:focus-within {
+            transform: translateY(-2px);
           }
           
           .form-label {
@@ -84,6 +119,11 @@ export default function AddBlog() {
             font-weight: 500;
             color: #444;
             font-size: 16px;
+            transition: color 0.2s ease;
+          }
+          
+          .form-group:focus-within .form-label {
+            color: #6d46e4;
           }
           
           .form-control {
@@ -94,6 +134,11 @@ export default function AddBlog() {
             font-size: 16px;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+          }
+          
+          .form-control:hover {
+            border-color: #bbb;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
           }
           
           .form-control:focus {
@@ -108,9 +153,20 @@ export default function AddBlog() {
             font-size: 13px;
             color: #888;
             margin-top: 5px;
+            transition: color 0.2s ease;
           }
           
-          .form-submit-btn {
+          .form-group:focus-within .char-counter {
+            color: #6d46e4;
+          }
+          
+          .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+          }
+          
+          .form-submit-btn, .form-cancel-btn {
             background: linear-gradient(to right, #6d46e4, #8f70e6);
             color: white;
             border: none;
@@ -126,16 +182,16 @@ export default function AddBlog() {
             overflow: hidden;
           }
           
-          .form-submit-btn:hover {
+          .form-submit-btn:hover, .form-cancel-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(109, 70, 228, 0.4);
           }
           
-          .form-submit-btn:active {
+          .form-submit-btn:active, .form-cancel-btn:active {
             transform: translateY(1px);
           }
           
-          .form-submit-btn::after {
+          .form-submit-btn::after, .form-cancel-btn::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -149,8 +205,18 @@ export default function AddBlog() {
             transform-origin: 50% 50%;
           }
           
-          .form-submit-btn:focus:not(:active)::after {
+          .form-submit-btn:focus:not(:active)::after, .form-cancel-btn:focus:not(:active)::after {
             animation: ripple 1s ease-out;
+          }
+          
+          .form-cancel-btn {
+            background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+            color: #4b5563;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          }
+          
+          .form-cancel-btn:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
           }
           
           .btn-submitting {
@@ -198,6 +264,11 @@ export default function AddBlog() {
             background: linear-gradient(135deg, rgba(109, 70, 228, 0.1), rgba(143, 112, 230, 0.05));
             border-radius: 50%;
             z-index: 0;
+            transition: transform 0.5s ease;
+          }
+          
+          .blog-form-container:hover .decorative-shape {
+            transform: scale(1.1) rotate(15deg);
           }
           
           .decorative-shape-2 {
@@ -209,6 +280,11 @@ export default function AddBlog() {
             background: linear-gradient(135deg, rgba(109, 70, 228, 0.05), rgba(143, 112, 230, 0.02));
             border-radius: 50%;
             z-index: 0;
+            transition: transform 0.5s ease;
+          }
+          
+          .blog-form-container:hover .decorative-shape-2 {
+            transform: scale(1.1) rotate(-10deg);
           }
           
           /* Responsive styles */
@@ -230,7 +306,11 @@ export default function AddBlog() {
               padding: 10px 12px;
             }
             
-            .form-submit-btn {
+            .form-actions {
+              flex-direction: column;
+            }
+            
+            .form-submit-btn, .form-cancel-btn {
               width: 100%;
               padding: 12px 0;
             }
@@ -242,7 +322,7 @@ export default function AddBlog() {
         <div className="decorative-shape"></div>
         <div className="decorative-shape-2"></div>
         
-        <h2 className="blog-form-title">Create a New Blog Post</h2>
+        <h2 className="blog-form-title">Edit Your Blog Post</h2>
         
         <form onSubmit={onSubmit}>
           <div className="form-group">
@@ -274,13 +354,20 @@ export default function AddBlog() {
             <span className="char-counter">{charCount} characters</span>
           </div>
           
-          <div style={{ textAlign: 'center' }}>
+          <div className="form-actions">
+            <button 
+              type="button" 
+              className="form-cancel-btn"
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
             <button 
               type="submit" 
               className={`form-submit-btn ${isSubmitting ? 'btn-submitting' : ''}`}
               disabled={isSubmitting || !blogData.title || !blogData.description}
             >
-              {isSubmitting ? 'Publishing...' : 'Publish Blog Post'}
+              {isSubmitting ? 'Saving...' : 'Update Blog Post'}
             </button>
           </div>
         </form>

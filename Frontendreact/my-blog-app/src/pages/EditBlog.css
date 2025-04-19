@@ -1,0 +1,362 @@
+/* EditBlogEnhanced.css - Modern styling with advanced hover effects */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Base styling */
+:root {
+  --primary-color: #4f46e5;
+  --primary-dark: #4338ca;
+  --primary-light: #c7d2fe;
+  --secondary-color: #8b5cf6;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.4s ease;
+  --border-radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Main container styling */
+.edit-blog-wrapper {
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #f5f7ff 0%, #e4e6ef 100%);
+}
+
+.edit-blog-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: all var(--transition-slow);
+  transform: translateY(0);
+  animation: fadeIn 0.7s ease-out;
+}
+
+.edit-blog-container:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-5px);
+}
+
+/* Header styling */
+.edit-blog-header {
+  padding: 2.5rem 2.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.edit-blog-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animation {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  margin: 0.5rem auto 1rem;
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+}
+
+.edit-blog-container:hover .underline-animation {
+  width: 150px;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.45);
+}
+
+.edit-blog-header p {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Form styling */
+.edit-blog-form {
+  padding: 1rem 2.5rem 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-container {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.input-container:hover .form-input:not(:focus):not(:placeholder-shown) {
+  border-color: #d1d5db;
+}
+
+.input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.input-container:hover .input-highlight,
+.form-input:focus ~ .input-highlight {
+  width: calc(100% - 20px);
+  opacity: 1;
+}
+
+.form-label {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  padding: 0 5px;
+  background-color: white;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: var(--text-light);
+  transition: all var(--transition-fast);
+  pointer-events: none;
+}
+
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label {
+  color: var(--primary-color);
+  font-weight: 500;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.form-input:focus ~ .form-label {
+  color: var(--primary-color);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 200px;
+}
+
+/* Button styling */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.submit-button, .cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  flex: 2;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(79, 70, 229, 0.4);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  flex: 1;
+}
+
+.cancel-button:hover {
+  background-color: rgba(243, 244, 246, 0.8);
+  color: var(--text-color);
+  border-color: #d1d5db;
+}
+
+.cancel-button:active {
+  background-color: rgba(229, 231, 235, 0.8);
+}
+
+.button-text {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.button-icon {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.submit-button:hover .button-icon {
+  transform: translateX(3px);
+}
+
+/* Loading spinner */
+.loader {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .edit-blog-container {
+    border-radius: 8px;
+  }
+  
+  .edit-blog-header {
+    padding: 2rem 1.5rem 1rem;
+  }
+  
+  .edit-blog-form {
+    padding: 1rem 1.5rem 2rem;
+  }
+  
+  .form-buttons {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+  
+  .submit-button, .cancel-button {
+    width: 100%;
+  }
+  
+  .edit-blog-header h1 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Floating label animation */
+.input-container .form-input:focus ~ .form-label,
+.input-container .form-input:not(:placeholder-shown) ~ .form-label {
+  background: linear-gradient(to right, white 45%, var(--primary-light) 55%, white 65%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Special hover effect for form fields */
+.input-container:hover .form-input:not(:focus) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
