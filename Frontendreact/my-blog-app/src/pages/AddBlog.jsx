@@ -367,7 +367,7 @@ export default function EditBlog() {
               className={`form-submit-btn ${isSubmitting ? 'btn-submitting' : ''}`}
               disabled={isSubmitting || !blogData.title || !blogData.description}
             >
-              {isSubmitting ? 'Saving...' : 'Update Blog Post'}
+              {isSubmitting ? 'Saving...' : 'Post Blog'}
             </button>
           </div>
         </form>

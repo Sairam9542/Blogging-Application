@@ -140,7 +140,7 @@ export default function BlogDetails() {
                     
                     .edit-button {
                         position: absolute;
-                        top: 30px;
+                        top: 70px;
                         right: 40px;
                         background: linear-gradient(to right, #6d46e4, #8f70e6);
                         color: white;
